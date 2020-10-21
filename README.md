@@ -17,8 +17,7 @@ Welcome to the Practical ASP.NET Subject. This is an elective subject and the ma
 
 ## Useful tools
 
-- [draw.io](https://www.draw.io/) - Online Diagram Drawing Tool
-- [app.diagrams.net](https://app.diagrams.net/) - Another Online Diagram Drawing Tool
+- [app.diagrams.net](https://app.diagrams.net/) - Online Diagram Drawing Tool
 
 ## Contact and Communication 📢
 
