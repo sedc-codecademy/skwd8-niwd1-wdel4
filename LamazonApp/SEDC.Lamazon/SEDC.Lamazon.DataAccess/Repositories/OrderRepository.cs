@@ -1,4 +1,5 @@
-﻿using SEDC.Lamazon.Domain.Models;
+﻿using SEDC.Lamazon.DataAccess.Interfaces;
+using SEDC.Lamazon.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

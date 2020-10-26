@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SEDC.Lamazon.DataAccess.Repositories
+namespace SEDC.Lamazon.DataAccess.Interfaces
 {
     public interface IRepository<T>
     {

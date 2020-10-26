@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SEDC.Lamazon.DataAccess;
+using SEDC.Lamazon.Services.Helpers;
 
 namespace SEDC.Lamazon.Web
 {
@@ -35,8 +36,8 @@ namespace SEDC.Lamazon.Web
 
 
             string connectionString = Configuration.GetValue<string>("LamazonConnectionString");
-            services.AddDbContext<LamazonDbContext>
-                (options => options.UseSqlServer(connectionString));
+
+            DIModule.RegisterModule(services, connectionString);
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
