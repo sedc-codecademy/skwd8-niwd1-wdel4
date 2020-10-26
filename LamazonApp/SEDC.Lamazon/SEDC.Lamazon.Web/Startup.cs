@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SEDC.Lamazon.DataAccess;
+using SEDC.Lamazon.DataAccess.Interfaces;
+using SEDC.Lamazon.DataAccess.Repositories;
 using SEDC.Lamazon.Services.Helpers;
 
 namespace SEDC.Lamazon.Web
@@ -39,7 +41,7 @@ namespace SEDC.Lamazon.Web
 
             DIModule.RegisterModule(services, connectionString);
 
-
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
