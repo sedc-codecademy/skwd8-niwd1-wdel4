@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SEDC.Lamazon.Domain.Models;
+using SEDC.Lamazon.Services.Interfaces;
 using SEDC.Lamazon.Web.Models;
 
 namespace SEDC.Lamazon.Web.Controllers
@@ -17,14 +19,14 @@ namespace SEDC.Lamazon.Web.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Hello! Welcome to Lamazon online store! We are the cheapest store in the world!";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Email: lamazon@gmail.com";
 
             return View();
         }

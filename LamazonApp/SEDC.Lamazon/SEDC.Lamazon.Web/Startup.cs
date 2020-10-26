@@ -14,6 +14,8 @@ using SEDC.Lamazon.DataAccess;
 using SEDC.Lamazon.DataAccess.Interfaces;
 using SEDC.Lamazon.DataAccess.Repositories;
 using SEDC.Lamazon.Services.Helpers;
+using SEDC.Lamazon.Services.Interfaces;
+using SEDC.Lamazon.Services.Services;
 
 namespace SEDC.Lamazon.Web
 {
@@ -41,7 +43,10 @@ namespace SEDC.Lamazon.Web
 
             DIModule.RegisterModule(services, connectionString);
 
-            
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IProductService, ProductService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

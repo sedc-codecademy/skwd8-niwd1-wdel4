@@ -2,6 +2,7 @@
 using SEDC.Lamazon.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SEDC.Lamazon.DataAccess.Repositories
@@ -18,7 +19,7 @@ namespace SEDC.Lamazon.DataAccess.Repositories
 
         public Product GetById(int id)
         {
-            throw new NotImplementedException();
+            return _db.Products.SingleOrDefault(x => x.Id == id);
         }
 
         public int Insert(Product entity)
