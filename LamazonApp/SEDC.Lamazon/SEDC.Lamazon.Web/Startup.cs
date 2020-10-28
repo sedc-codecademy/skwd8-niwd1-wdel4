@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -46,6 +47,8 @@ namespace SEDC.Lamazon.Web
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IProductService, ProductService>();
+
+            services.AddAutoMapper();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -1,4 +1,5 @@
 ﻿using SEDC.Lamazon.Domain.Models;
+using SEDC.Lamazon.WebModels.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ namespace SEDC.Lamazon.Services.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<Product> GetAllProducts();
-        Product GetProductById(int id);
+        IEnumerable<ProductViewModel> GetAllProducts();
+        ProductViewModel GetProductById(int id);
     }
 }

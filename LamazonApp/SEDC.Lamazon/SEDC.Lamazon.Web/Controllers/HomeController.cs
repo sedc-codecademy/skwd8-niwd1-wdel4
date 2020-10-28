@@ -12,8 +12,16 @@ namespace SEDC.Lamazon.Web.Controllers
 {
     public class HomeController : Controller
     {
+
+        protected readonly IProductService _productService;
+        public HomeController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
         public IActionResult Index()
         {
+            var products = _productService.GetAllProducts();
             return View();
         }
 

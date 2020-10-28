@@ -1,8 +1,12 @@
-﻿using SEDC.Lamazon.DataAccess.Interfaces;
+﻿using AutoMapper;
+using SEDC.Lamazon.DataAccess.Interfaces;
 using SEDC.Lamazon.Domain.Models;
 using SEDC.Lamazon.Services.Interfaces;
+using SEDC.Lamazon.WebModels.Enum;
+using SEDC.Lamazon.WebModels.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SEDC.Lamazon.Services.Services
@@ -10,22 +14,59 @@ namespace SEDC.Lamazon.Services.Services
     public class ProductService : IProductService
     {
         protected readonly IRepository<Product> _productRepository;
-        public ProductService(IRepository<Product> productRepository)
+        protected readonly IMapper _mapper;
+        public ProductService(IRepository<Product> productRepository, 
+                              IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<ProductViewModel> GetAllProducts()
         {
-            return _productRepository.GetAll();
+            //The following line was the first implementation
+            //return _productRepository.GetAll();
+
+            //List<Product> products = _productRepository.GetAll().ToList();
+
+            //List<ProductViewModel> mappedProducts = new List<ProductViewModel>();
+
+            //foreach (var product in products)
+            //{
+            //    ProductViewModel model = new ProductViewModel();
+            //    model.Id = product.Id;
+            //    model.Name = product.Name;
+            //    model.Description = product.Description;
+            //    model.Category = (CategoryTypeViewModel)product.Category;
+            //    model.Price = product.Price;
+
+            //    mappedProducts.Add(model);
+            //}
+            //return mappedProducts;
+
+
+            //Return result using Automapper mapping 
+            List<Product> products = _productRepository.GetAll().ToList();
+            return _mapper.Map<List<Product>, List<ProductViewModel>>(products);
+
         }
 
-        public Product GetProductById(int id)
+        public ProductViewModel GetProductById(int id)
         {
             Product product = _productRepository.GetById(id);
-            if(product != null)
+
+            //ProductViewModel model = new ProductViewModel();
+            //model.Id = product.Id;
+            //model.Name = product.Name;
+            //model.Description = product.Description;
+            //model.Category = (CategoryTypeViewModel)product.Category;
+            //model.Price = product.Price;
+
+            ProductViewModel model = _mapper.Map<ProductViewModel>(product);
+
+            if (model != null)
             {
-                return product;
+                return model;
             }
             else
             {

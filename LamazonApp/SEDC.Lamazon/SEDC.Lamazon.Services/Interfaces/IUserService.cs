@@ -10,8 +10,8 @@ namespace SEDC.Lamazon.Services.Interfaces
     {
         //TODO: Change all the User domain models with appropriate ViewModel!!!
 
-        void Register(User registerModel);
-        void Login(User loginModel);
+        void Register(RegisterViewModel registerModel);
+        void Login(LoginViewModel loginModel);
         void Logout();
         UserViewModel GetCurrentUser(string username);
     }

@@ -2,6 +2,7 @@
 using SEDC.Lamazon.Domain.Enum;
 using SEDC.Lamazon.Domain.Models;
 using SEDC.Lamazon.Services.Interfaces;
+using SEDC.Lamazon.WebModels.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,20 +26,22 @@ namespace SEDC.Lamazon.Services.Services
         }
 
         //TODO: Refactor the code when ViewModels will be implemented
-        public IEnumerable<Order> GetAllOrders()
+        public IEnumerable<OrderViewModel> GetAllOrders()
         {
             IEnumerable<Order> orders = _orderRepository.GetAll();
-            return orders;
+            //return orders;
+            throw new NotImplementedException();
         }
 
-        public Order GetCurrentOrder(int userId)
+        public OrderViewModel GetCurrentOrder(int userId)
         {
             try
             {
                 Order order = _orderRepository.GetAll()
                                               .Where(x => x.UserId == userId)
                                               .LastOrDefault();
-                return order;
+                //return order;
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
@@ -47,11 +50,12 @@ namespace SEDC.Lamazon.Services.Services
             }
         }
 
-        public Order GetOrderById(int id)
+        public OrderViewModel GetOrderById(int id)
         {
             try
             {
-                return _orderRepository.GetById(id);
+                //return _orderRepository.GetById(id);
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
@@ -86,14 +90,15 @@ namespace SEDC.Lamazon.Services.Services
             }
         }
 
-        public int CreateOrder(Order order, int userId)
+        public int CreateOrder(OrderViewModel order, int userId)
         {
             try
             {
                 User user = _userRepository.GetById(userId);
 
-                order.User = user;
-                return _orderRepository.Insert(order);
+                //order.User = user;
+                //return _orderRepository.Insert(order);
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
