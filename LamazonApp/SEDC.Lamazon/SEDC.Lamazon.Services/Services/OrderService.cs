@@ -1,4 +1,5 @@
-﻿using SEDC.Lamazon.DataAccess.Interfaces;
+﻿using AutoMapper;
+using SEDC.Lamazon.DataAccess.Interfaces;
 using SEDC.Lamazon.Domain.Enum;
 using SEDC.Lamazon.Domain.Models;
 using SEDC.Lamazon.Services.Interfaces;
@@ -15,22 +16,25 @@ namespace SEDC.Lamazon.Services.Services
         protected readonly IRepository<Product> _productRepository;
         protected readonly IRepository<Order> _orderRepository;
         protected readonly IUserRepository _userRepository;
+        protected readonly IMapper _mapper;
 
         public OrderService(IRepository<Product> productRepository,
                             IRepository<Order> orderRepository,
-                            IUserRepository userRepository)
+                            IUserRepository userRepository,
+                            IMapper mapper)
         {
             _productRepository = productRepository;
             _orderRepository = orderRepository;
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         //TODO: Refactor the code when ViewModels will be implemented
         public IEnumerable<OrderViewModel> GetAllOrders()
         {
             IEnumerable<Order> orders = _orderRepository.GetAll();
-            //return orders;
-            throw new NotImplementedException();
+            List<OrderViewModel> mappedOrders = _mapper.Map <List<OrderViewModel>>(orders);
+            return mappedOrders;
         }
 
         public OrderViewModel GetCurrentOrder(int userId)
@@ -40,8 +44,8 @@ namespace SEDC.Lamazon.Services.Services
                 Order order = _orderRepository.GetAll()
                                               .Where(x => x.UserId == userId)
                                               .LastOrDefault();
-                //return order;
-                throw new NotImplementedException();
+                OrderViewModel mappedOrder = _mapper.Map<OrderViewModel>(order);
+                return mappedOrder;
             }
             catch (Exception ex)
             {
