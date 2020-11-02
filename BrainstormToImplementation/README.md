@@ -61,7 +61,7 @@ This project is where all the business logic is located. Here we also separate t
 
 2. MappingProfile.cs - In this class we configure AutoMapper, which we use so that we can map our domain models into a ViewModels. In order to do this we need to install the appropriate NuGet Packages first which are the following:
 
-- In services: AutoMapper v7.01
+- In services: AutoMapper v7.0.1
 - In WebApplication: AutoMapper.DependencyInjection v5.0.1
 - Add in Startup.cs services.AddAutoMapper();
 
