@@ -3,6 +3,7 @@ using SEDC.Lamazon.DataAccess.Interfaces;
 using SEDC.Lamazon.Domain.Enum;
 using SEDC.Lamazon.Domain.Models;
 using SEDC.Lamazon.Services.Interfaces;
+using SEDC.Lamazon.WebModels.Enum;
 using SEDC.Lamazon.WebModels.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace SEDC.Lamazon.Services.Services
         public IEnumerable<OrderViewModel> GetAllOrders()
         {
             IEnumerable<Order> orders = _orderRepository.GetAll();
-            List<OrderViewModel> mappedOrders = _mapper.Map <List<OrderViewModel>>(orders);
+            List<OrderViewModel> mappedOrders = _mapper.Map<List<OrderViewModel>>(orders);
             return mappedOrders;
         }
 
@@ -54,17 +55,41 @@ namespace SEDC.Lamazon.Services.Services
             }
         }
 
-        public OrderViewModel GetOrderById(int id)
+        public OrderViewModel GetOrderById(int id, int userId)
         {
             try
             {
-                //return _orderRepository.GetById(id);
-                throw new NotImplementedException();
+                User user = _userRepository.GetById(userId);
+                Order order = _orderRepository.GetById(id);
+
+                if(user.Id == order.UserId)
+                {
+                    return _mapper.Map<OrderViewModel>(order);
+                }
+                else
+                {
+                    return new OrderViewModel();
+                }
             }
             catch (Exception ex)
             {
                 string message = ex.Message;
                 throw new Exception(message);
+            }
+        }
+
+        //We add this additional GetOrderById method because we need to call it without userId in the OrderController
+        //So instead of mixing the things, we separate the logic into two same methods with different declaration
+        public OrderViewModel GetOrderById(int id)
+        {
+            try
+            {
+                return _mapper.Map<OrderViewModel>(_orderRepository.GetById(id));
+            }
+            catch (Exception ex)
+            {
+                string message = $"Order not exist! {ex.InnerException}";
+                throw new Exception(message, ex);
             }
         }
 
@@ -112,16 +137,16 @@ namespace SEDC.Lamazon.Services.Services
 
         }
 
-        public int ChangeStatus(int orderId, int userId, StatusType status)
+        public int ChangeStatus(int orderId, int userId, StatusTypeViewModel status)
         {
             try
             {
                 Order order = _orderRepository.GetById(orderId);
                 User user = _userRepository.GetById(userId);
 
-                order.Status = status;
+                order.Status = (StatusType)status;
 
-                if(status == StatusType.Pending)
+                if(status == StatusTypeViewModel.Pending)
                 {
                     _orderRepository.Insert(
                             new Order

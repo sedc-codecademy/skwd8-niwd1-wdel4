@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SEDC.Lamazon.Services.Interfaces;
+using SEDC.Lamazon.Web.Models;
+using SEDC.Lamazon.WebModels.Enum;
 using SEDC.Lamazon.WebModels.ViewModels;
 
 namespace SEDC.Lamazon.Web.Controllers
 {
+    //TODO: Change all hardcoded userId in the controller
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
@@ -24,8 +27,9 @@ namespace SEDC.Lamazon.Web.Controllers
         }
 
         public IActionResult ListOrders()
+        
         {
-            int userId = 1;
+            int userId = 3;
             List<OrderViewModel> userOrders = _orderService.GetAllOrders()
                                                             .Where(x => x.User.Id == userId)
                                                             .ToList();
@@ -36,6 +40,35 @@ namespace SEDC.Lamazon.Web.Controllers
         {
             List<OrderViewModel> orders = _orderService.GetAllOrders().ToList();
             return View(orders);
+        }
+
+        public IActionResult OrderDetails(int orderId)
+        {
+            int userId = 3;
+            OrderViewModel order = _orderService.GetOrderById(orderId, userId);
+
+            if(order.Id > 0)
+            {
+                return View("order", order);
+            }
+            else
+            {
+                return View("Error", new ErrorViewModel());
+            }
+        }
+
+        public IActionResult Order()
+        {
+            int userId = 3;
+            OrderViewModel order = _orderService.GetCurrentOrder(userId);
+            return View(order);
+        }
+
+        public IActionResult ConfirmOrder(int orderId)
+        {
+            OrderViewModel order = _orderService.GetOrderById(orderId);
+            _orderService.ChangeStatus(order.Id, order.User.Id, StatusTypeViewModel.Confirmed);
+            return RedirectToAction("listallorders");
         }
     }
 }

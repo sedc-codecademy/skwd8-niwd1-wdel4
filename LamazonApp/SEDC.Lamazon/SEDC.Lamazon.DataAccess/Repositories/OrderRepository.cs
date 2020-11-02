@@ -1,4 +1,5 @@
-﻿using SEDC.Lamazon.DataAccess.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using SEDC.Lamazon.DataAccess.Interfaces;
 using SEDC.Lamazon.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,19 @@ namespace SEDC.Lamazon.DataAccess.Repositories
 
         public IEnumerable<Order> GetAll()
         {
-            return _db.Orders;
+            return _db.Orders
+                .Include(x => x.ProductOrders)
+                .ThenInclude(x => x.Product)
+                .Include(x => x.User);
         }
 
         public Order GetById(int id)
         {
-            return _db.Orders.SingleOrDefault(x => x.Id == id);
+            return _db.Orders
+                .Include(x => x.ProductOrders)
+                .ThenInclude(x => x.Product)
+                .Include(x => x.User)
+                .SingleOrDefault(x => x.Id == id);
         }
 
         public int Insert(Order entity)

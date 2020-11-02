@@ -44,8 +44,8 @@
                 @if (order.Status == StatusTypeViewModel.Pending)
                 {
                     <td>
-                        <a asp-action="approveorder" asp-controller="Order" asp-route-orderId="@order.Id">Approve</a>
-                        <a asp-action="declineorder" asp-controller="Order" asp-route-orderId="@order.Id">Decline</a>
+                        <a asp-action="approveorder" asp-controller="Order" asp-route-orderId="@order.Id" class="btn btn-primary">Approve</a>
+                        <a asp-action="declineorder" asp-controller="Order" asp-route-orderId="@order.Id" class="btn btn-primary">Decline</a>
                     </td>
                 }
                 else if (order.Status == StatusTypeViewModel.Confirmed)

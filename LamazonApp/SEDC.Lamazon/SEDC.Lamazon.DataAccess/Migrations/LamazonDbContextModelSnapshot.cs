@@ -40,9 +40,9 @@ namespace SEDC.Lamazon.DataAccess.Migrations
                     b.ToTable("Orders");
 
                     b.HasData(
-                        new { Id = 1, DateOfOrder = new DateTime(2020, 11, 2, 19, 1, 25, 366, DateTimeKind.Local), IsPaid = false, Status = 0, UserId = 3 },
-                        new { Id = 2, DateOfOrder = new DateTime(2020, 11, 2, 19, 1, 25, 369, DateTimeKind.Local), IsPaid = false, Status = 2, UserId = 3 },
-                        new { Id = 3, DateOfOrder = new DateTime(2020, 11, 2, 19, 1, 25, 369, DateTimeKind.Local), IsPaid = false, Status = 1, UserId = 3 }
+                        new { Id = 1, DateOfOrder = new DateTime(2020, 11, 2, 20, 11, 48, 753, DateTimeKind.Local), IsPaid = false, Status = 0, UserId = 3 },
+                        new { Id = 2, DateOfOrder = new DateTime(2020, 11, 2, 20, 11, 48, 755, DateTimeKind.Local), IsPaid = false, Status = 2, UserId = 3 },
+                        new { Id = 3, DateOfOrder = new DateTime(2020, 11, 2, 20, 11, 48, 755, DateTimeKind.Local), IsPaid = false, Status = 1, UserId = 3 }
                     );
                 });
 
@@ -65,18 +65,9 @@ namespace SEDC.Lamazon.DataAccess.Migrations
                     b.ToTable("Products");
 
                     b.HasData(
-                        new { Id = 1, Category = 2, Description = "Very good phone. Bad batery", Name = "Samsung A40", Price = 200.0 },
-                        new { Id = 2, Category = 2, Description = "Large SSD of high quality", Name = "SSD 1TB", Price = 400.0 },
-                        new { Id = 3, Category = 3, Description = "C# Book for everyone", Name = "C# in depth", Price = 40.0 },
-                        new { Id = 4, Category = 3, Description = "Book for clean code", Name = "Clean Code", Price = 60.0 },
-                        new { Id = 5, Category = 1, Description = "Magical Elixir of Power", Name = "Rakija", Price = 20.0 },
-                        new { Id = 6, Category = 1, Description = "When you have too much Rakija", Name = "Sparkling Water", Price = 2.0 },
-                        new { Id = 7, Category = 0, Description = "All in one pack of appetizers", Name = "Meze", Price = 15.0 },
-                        new { Id = 8, Category = 0, Description = "Stew for good morning", Name = "Stew in a can", Price = 8.0 },
-                        new { Id = 9, Category = 4, Description = "Set of 6 glasses", Name = "Glasses set", Price = 10.0 },
-                        new { Id = 10, Category = 4, Description = "Set of 20 plastic knives and forks", Name = "Plastic knives and forks", Price = 4.0 },
-                        new { Id = 11, Category = 4, Description = "A bag of ice", Name = "Ice", Price = 3.0 },
-                        new { Id = 12, Category = 4, Description = "Plates for the whole family", Name = "Plastic plates", Price = 5.0 }
+                        new { Id = 1, Category = 2, Description = "The best samsung phone!", Name = "Samsung Galaxy S20", Price = 1000.0 },
+                        new { Id = 2, Category = 4, Description = "Full bag of ice for your party!", Name = "Ice", Price = 1.0 },
+                        new { Id = 3, Category = 1, Description = "Scotch wiskey", Name = "Johnnie Walker", Price = 20.0 }
                     );
                 });
 
