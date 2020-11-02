@@ -28,6 +28,24 @@ body {
     margin: 15px;
 }
 
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+.product-image {
+    width: 250px !important;
+    height: 300px !important;
+}
+
+
+
+
+
+
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

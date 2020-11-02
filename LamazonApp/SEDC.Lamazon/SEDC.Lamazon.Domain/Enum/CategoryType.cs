@@ -8,7 +8,7 @@ namespace SEDC.Lamazon.Domain.Enum
     {
         Food,
         Drinks,
-        Electornics,
+        Electronics,
         Books,
         Other
     }

@@ -113,7 +113,7 @@ namespace SEDC.Lamazon.DataAccess
                         Name = "Samsung Galaxy S20",
                         Price = 1000,
                         Description = "The best samsung phone!",
-                        Category = CategoryType.Electornics
+                        Category = CategoryType.Electronics
                     },
                     new Product
                     {
