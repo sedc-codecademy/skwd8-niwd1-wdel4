@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SEDC.Lamazon.DataAccess.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -134,32 +134,32 @@ namespace SEDC.Lamazon.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "Age", "FirstName", "LastName", "Password", "RoleId", "Username" },
-                values: new object[] { 1, "Partizanski Odredi 20", 0, "Martin", "Panovski", "Martin123", 1, "martin-pano" });
+                values: new object[] { 1, "Partizanski Odredi 20", 27, "Martin", "Panovski", "Martin123", 1, "martin-pano" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "Age", "FirstName", "LastName", "Password", "RoleId", "Username" },
-                values: new object[] { 2, "Test Street 20", 0, "Dejan", "Jovanov", "Dejan123", 2, "dejan-jovanov" });
+                values: new object[] { 2, "Test Street 20", 28, "Dejan", "Jovanov", "Dejan123", 2, "dejan-jovanov" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "Age", "FirstName", "LastName", "Password", "RoleId", "Username" },
-                values: new object[] { 3, "Test Street 10", 0, "Ivo", "Kostovski", "Ivo123", 3, "ivo-kostovski" });
+                values: new object[] { 3, "Test Street 10", 30, "Ivo", "Kostovski", "Ivo123", 3, "ivo-kostovski" });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "DateOfOrder", "IsPaid", "Status", "UserId" },
-                values: new object[] { 1, new DateTime(2020, 10, 21, 20, 25, 14, 903, DateTimeKind.Local), false, 0, 3 });
+                values: new object[] { 1, new DateTime(2020, 11, 2, 20, 11, 48, 753, DateTimeKind.Local), false, 0, 3 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "DateOfOrder", "IsPaid", "Status", "UserId" },
-                values: new object[] { 2, new DateTime(2020, 10, 21, 20, 25, 14, 905, DateTimeKind.Local), false, 2, 3 });
+                values: new object[] { 2, new DateTime(2020, 11, 2, 20, 11, 48, 755, DateTimeKind.Local), false, 2, 3 });
 
             migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "DateOfOrder", "IsPaid", "Status", "UserId" },
-                values: new object[] { 3, new DateTime(2020, 10, 21, 20, 25, 14, 905, DateTimeKind.Local), false, 1, 3 });
+                values: new object[] { 3, new DateTime(2020, 11, 2, 20, 11, 48, 755, DateTimeKind.Local), false, 1, 3 });
 
             migrationBuilder.InsertData(
                 table: "ProductOrders",

@@ -1,5 +1,6 @@
 ﻿using SEDC.Lamazon.Domain.Enum;
 using SEDC.Lamazon.Domain.Models;
+using SEDC.Lamazon.WebModels.Enum;
 using SEDC.Lamazon.WebModels.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ namespace SEDC.Lamazon.Services.Interfaces
     {
         //TODO: Change all the User domain models with appropriate ViewModel!!!
         IEnumerable<OrderViewModel> GetAllOrders();
+        OrderViewModel GetOrderById(int id, int userId);
         OrderViewModel GetOrderById(int id);
         int CreateOrder(OrderViewModel order, int userId);
         int AddProduct(int orderId, int productId, int userId);
         OrderViewModel GetCurrentOrder(int userId);
-        int ChangeStatus(int orderId, int userId, StatusType status);
+        int ChangeStatus(int orderId, int userId, StatusTypeViewModel status);
     }
 }

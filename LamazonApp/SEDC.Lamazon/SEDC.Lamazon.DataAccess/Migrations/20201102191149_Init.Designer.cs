@@ -10,8 +10,8 @@ using SEDC.Lamazon.DataAccess;
 namespace SEDC.Lamazon.DataAccess.Migrations
 {
     [DbContext(typeof(LamazonDbContext))]
-    [Migration("20201021182515_Initial")]
-    partial class Initial
+    [Migration("20201102191149_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,9 +42,9 @@ namespace SEDC.Lamazon.DataAccess.Migrations
                     b.ToTable("Orders");
 
                     b.HasData(
-                        new { Id = 1, DateOfOrder = new DateTime(2020, 10, 21, 20, 25, 14, 903, DateTimeKind.Local), IsPaid = false, Status = 0, UserId = 3 },
-                        new { Id = 2, DateOfOrder = new DateTime(2020, 10, 21, 20, 25, 14, 905, DateTimeKind.Local), IsPaid = false, Status = 2, UserId = 3 },
-                        new { Id = 3, DateOfOrder = new DateTime(2020, 10, 21, 20, 25, 14, 905, DateTimeKind.Local), IsPaid = false, Status = 1, UserId = 3 }
+                        new { Id = 1, DateOfOrder = new DateTime(2020, 11, 2, 20, 11, 48, 753, DateTimeKind.Local), IsPaid = false, Status = 0, UserId = 3 },
+                        new { Id = 2, DateOfOrder = new DateTime(2020, 11, 2, 20, 11, 48, 755, DateTimeKind.Local), IsPaid = false, Status = 2, UserId = 3 },
+                        new { Id = 3, DateOfOrder = new DateTime(2020, 11, 2, 20, 11, 48, 755, DateTimeKind.Local), IsPaid = false, Status = 1, UserId = 3 }
                     );
                 });
 
@@ -147,9 +147,9 @@ namespace SEDC.Lamazon.DataAccess.Migrations
                     b.ToTable("Users");
 
                     b.HasData(
-                        new { Id = 1, Address = "Partizanski Odredi 20", Age = 0, FirstName = "Martin", LastName = "Panovski", Password = "Martin123", RoleId = 1, Username = "martin-pano" },
-                        new { Id = 2, Address = "Test Street 20", Age = 0, FirstName = "Dejan", LastName = "Jovanov", Password = "Dejan123", RoleId = 2, Username = "dejan-jovanov" },
-                        new { Id = 3, Address = "Test Street 10", Age = 0, FirstName = "Ivo", LastName = "Kostovski", Password = "Ivo123", RoleId = 3, Username = "ivo-kostovski" }
+                        new { Id = 1, Address = "Partizanski Odredi 20", Age = 27, FirstName = "Martin", LastName = "Panovski", Password = "Martin123", RoleId = 1, Username = "martin-pano" },
+                        new { Id = 2, Address = "Test Street 20", Age = 28, FirstName = "Dejan", LastName = "Jovanov", Password = "Dejan123", RoleId = 2, Username = "dejan-jovanov" },
+                        new { Id = 3, Address = "Test Street 10", Age = 30, FirstName = "Ivo", LastName = "Kostovski", Password = "Ivo123", RoleId = 3, Username = "ivo-kostovski" }
                     );
                 });
 
