@@ -2,7 +2,7 @@
 
 &nbsp;
 
-#### For the need of client payment process as part of the Lamazon Application you will have to implement the **Invoice** feature !! ❗
+#### For the need of the client payment process as part of the Lamazon Application you will have to implement the **Invoice** feature ❗❗❗
 
 ##### Invoice is an actual recipe that in real world application we are obligated to give to a client after successful payment. As from our perspective it should at least contain following information:
 
