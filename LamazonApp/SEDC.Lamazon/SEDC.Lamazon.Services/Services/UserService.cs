@@ -34,8 +34,8 @@ namespace SEDC.Lamazon.Services.Services
                 return new UserViewModel
                 {
                     Id = user.Id,
-                    Username = user.Username,
-                    Fullname = String.Format("{0} {1}", user.FirstName, user.LastName)
+                    Username = user.UserName,
+                    Fullname = user.FullName
                 };
             }
             catch (Exception ex)

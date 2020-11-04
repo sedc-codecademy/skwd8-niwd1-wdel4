@@ -27,9 +27,8 @@ namespace SEDC.Lamazon.Web.Controllers
         }
 
         public IActionResult ListOrders()
-        
         {
-            int userId = 3;
+            string userId = "3";
             List<OrderViewModel> userOrders = _orderService.GetAllOrders()
                                                             .Where(x => x.User.Id == userId)
                                                             .ToList();
@@ -44,7 +43,7 @@ namespace SEDC.Lamazon.Web.Controllers
 
         public IActionResult OrderDetails(int orderId)
         {
-            int userId = 3;
+            string userId = "3";
             OrderViewModel order = _orderService.GetOrderById(orderId, userId);
 
             if(order.Id > 0)
@@ -59,16 +58,41 @@ namespace SEDC.Lamazon.Web.Controllers
 
         public IActionResult Order()
         {
-            int userId = 3;
+            string userId = "3";
             OrderViewModel order = _orderService.GetCurrentOrder(userId);
             return View(order);
         }
 
-        public IActionResult ConfirmOrder(int orderId)
+        public IActionResult ApproveOrder(int orderId)
         {
             OrderViewModel order = _orderService.GetOrderById(orderId);
             _orderService.ChangeStatus(order.Id, order.User.Id, StatusTypeViewModel.Confirmed);
             return RedirectToAction("listallorders");
+        }
+
+        public IActionResult DeclineOrder(int orderId)
+        {
+            OrderViewModel order = _orderService.GetOrderById(orderId);
+            _orderService.ChangeStatus(order.Id, order.User.Id, StatusTypeViewModel.Declined);
+            return RedirectToAction("listallorders");
+        }
+
+        public int AddProduct(int productId)
+        {
+            string userId = "3";
+            OrderViewModel order = _orderService.GetCurrentOrder(userId);
+
+            int result = _orderService.AddProduct(order.Id, productId, userId);
+
+            if(result >= 0)
+            {
+                return result;
+            }
+            else
+            {
+                string message = "Something bad happened! Please contact support!";
+                return result;
+            }
         }
     }
 }

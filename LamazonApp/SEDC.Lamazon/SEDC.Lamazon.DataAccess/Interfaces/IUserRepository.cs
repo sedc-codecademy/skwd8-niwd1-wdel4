@@ -8,6 +8,6 @@ namespace SEDC.Lamazon.DataAccess.Interfaces
     public interface IUserRepository
     {
         User GetByUsername(string username);
-        User GetById(int id);
+        User GetById(string id);
     }
 }

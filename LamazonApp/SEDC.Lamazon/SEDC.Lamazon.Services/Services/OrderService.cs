@@ -38,7 +38,7 @@ namespace SEDC.Lamazon.Services.Services
             return mappedOrders;
         }
 
-        public OrderViewModel GetCurrentOrder(int userId)
+        public OrderViewModel GetCurrentOrder(string userId)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace SEDC.Lamazon.Services.Services
             }
         }
 
-        public OrderViewModel GetOrderById(int id, int userId)
+        public OrderViewModel GetOrderById(int id, string userId)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace SEDC.Lamazon.Services.Services
             }
         }
 
-        public int AddProduct(int orderId, int productId, int userId)
+        public int AddProduct(int orderId, int productId, string userId)
         {
             try
             {
@@ -119,15 +119,16 @@ namespace SEDC.Lamazon.Services.Services
             }
         }
 
-        public int CreateOrder(OrderViewModel order, int userId)
+        public int CreateOrder(OrderViewModel order, string userId)
         {
             try
             {
                 User user = _userRepository.GetById(userId);
+                Order mappedOrder = _mapper.Map<Order>(order);
 
-                //order.User = user;
-                //return _orderRepository.Insert(order);
-                throw new NotImplementedException();
+                mappedOrder.User = user;
+
+                return _orderRepository.Insert(mappedOrder);
             }
             catch (Exception ex)
             {
@@ -137,7 +138,7 @@ namespace SEDC.Lamazon.Services.Services
 
         }
 
-        public int ChangeStatus(int orderId, int userId, StatusTypeViewModel status)
+        public int ChangeStatus(int orderId, string userId, StatusTypeViewModel status)
         {
             try
             {

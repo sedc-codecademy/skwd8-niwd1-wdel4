@@ -48,6 +48,15 @@ namespace SEDC.Lamazon.Web
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IProductService, ProductService>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/User/Login";
+                options.AccessDeniedPath = "/User/Login";
+                options.SlidingExpiration = true;
+            });
+
             services.AddAutoMapper();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -69,6 +78,9 @@ namespace SEDC.Lamazon.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            //Don't avoid the following line if you want your app to use authentication
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
