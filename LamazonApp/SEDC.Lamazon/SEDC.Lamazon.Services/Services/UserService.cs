@@ -1,4 +1,6 @@
-﻿using SEDC.Lamazon.DataAccess.Interfaces;
+﻿using Microsoft.AspNetCore.Identity;
+using SEDC.Lamazon.DataAccess.Interfaces;
+using SEDC.Lamazon.Domain.Enum;
 using SEDC.Lamazon.Domain.Models;
 using SEDC.Lamazon.Services.Interfaces;
 using SEDC.Lamazon.WebModels.ViewModels;
@@ -11,19 +13,60 @@ namespace SEDC.Lamazon.Services.Services
     public class UserService : IUserService
     {
         protected readonly IUserRepository _userRepository;
-        public UserService(IUserRepository userRepository)
+        protected readonly SignInManager<User> _signInManager;
+        protected readonly UserManager<User> _userManager;
+
+
+        public UserService(IUserRepository userRepository,
+                           SignInManager<User> signInManager,
+                           UserManager<User> userManager)
         {
             _userRepository = userRepository;
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         public void Register(RegisterViewModel registerModel)
         {
-            throw new NotImplementedException();
+            User user = new User
+            {
+                UserName = registerModel.Username,
+                FullName = String.Format("{0} {1}", registerModel.Firstname, registerModel.Lastname),
+                Email = registerModel.Email,
+                Orders = new List<Order>()
+                {
+                    new Order
+                    {
+                        Status = StatusType.Init
+                    }
+                }
+            };
+
+            var password = registerModel.Password;
+
+            var result = _userManager.CreateAsync(user, password).Result;
+
+            if (result.Succeeded)
+            {
+                var currentUser = _userManager.FindByNameAsync(user.UserName).Result;
+                _userManager.AddToRoleAsync(user, "user");
+
+                Login(new LoginViewModel
+                {
+                    Username = registerModel.Username,
+                    Password = registerModel.Password
+                });
+            }
         }
 
         public void Login(LoginViewModel loginModel)
         {
-            throw new NotImplementedException();
+            var result = _signInManager.PasswordSignInAsync(loginModel.Username, loginModel.Password, false, false).Result;
+
+            if (result.IsNotAllowed)
+            {
+                throw new Exception("Username or Password is not correct!");
+            }
         }
 
         public UserViewModel GetCurrentUser(string username)
@@ -47,7 +90,7 @@ namespace SEDC.Lamazon.Services.Services
 
         public void Logout()
         {
-            throw new NotImplementedException();
+            _signInManager.SignOutAsync();
         }
 
     }

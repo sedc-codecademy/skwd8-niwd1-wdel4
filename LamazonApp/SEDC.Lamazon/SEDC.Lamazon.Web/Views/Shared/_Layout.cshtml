@@ -32,11 +32,40 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Order" asp-action="Order">Current order</a></li>
-                    <li><a asp-area="" asp-controller="Order" asp-action="ListOrders">My orders</a></li>
-                    <li><a asp-area="" asp-controller="Order" asp-action="ListAllOrders">All orders</a></li>
+
+
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li><a asp-area="" asp-controller="Order" asp-action="ListAllOrders">All orders</a></li>
+                    }
+                    else
+                    {
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-area="" asp-controller="Order" asp-action="Order">Current order</a></li>
+                            <li><a asp-area="" asp-controller="Order" asp-action="ListOrders">My orders</a></li>
+                            <li><a asp-area="" asp-controller="Product" asp-action="Products">Products</a></li>
+                        }
+                    }
                 </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="align-right">
+                            <a asp-controller="User" asp-action="LogOut">Logout</a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="align-right">
+                            <a asp-controller="User" asp-action="Login">Login</a>
+                        </li>
+                    </ul>
+                }
             </div>
         </div>
     </nav>
