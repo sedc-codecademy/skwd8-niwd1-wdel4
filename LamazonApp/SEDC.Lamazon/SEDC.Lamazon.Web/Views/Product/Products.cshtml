@@ -15,9 +15,32 @@
                 <h4>@product.Description</h4>
                 <h5>@product.Price $</h5>
                 <p>
-                    <button class="btn btn-primary">Add to cart</button>
+                    <button value="@product.Id" class="btn btn-primary productItem">Add to cart</button>
                 </p>
             </div>
         </div>
      }
 </div>
+
+<script type="text/javascript">
+
+    let products = document.getElementsByClassName("products")[0];
+    products.addEventListener('click', function (e) {
+        e.stopPropagation();
+        let target = e.target;
+
+        let targetId = target.classList.contains('productItem') ? target.value : null;
+
+        if (targetId != null) {
+            addToCart(targetId);
+        }
+    });
+
+    function addToCart(targetId) {
+        fetch("/Order/AddProduct?productId=" + targetId, {
+            method: "post"
+        })
+            .then(res => alert("Successfully added!"))
+            .catch(err => alert(err));
+    }
+</script>

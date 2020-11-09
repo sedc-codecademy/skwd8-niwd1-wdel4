@@ -28,9 +28,10 @@ namespace SEDC.Lamazon.Web.Controllers
 
         public IActionResult ListOrders()
         {
-            string userId = "3";
+            //string userId = "3";
+            UserViewModel user = _userService.GetCurrentUser(User.Identity.Name);
             List<OrderViewModel> userOrders = _orderService.GetAllOrders()
-                                                            .Where(x => x.User.Id == userId)
+                                                            .Where(x => x.User.Id == user.Id)
                                                             .ToList();
             return View(userOrders);
         }
@@ -43,8 +44,8 @@ namespace SEDC.Lamazon.Web.Controllers
 
         public IActionResult OrderDetails(int orderId)
         {
-            string userId = "3";
-            OrderViewModel order = _orderService.GetOrderById(orderId, userId);
+            UserViewModel user = _userService.GetCurrentUser(User.Identity.Name);
+            OrderViewModel order = _orderService.GetOrderById(orderId, user.Id);
 
             if(order.Id > 0)
             {
@@ -58,8 +59,8 @@ namespace SEDC.Lamazon.Web.Controllers
 
         public IActionResult Order()
         {
-            string userId = "3";
-            OrderViewModel order = _orderService.GetCurrentOrder(userId);
+            UserViewModel user = _userService.GetCurrentUser(User.Identity.Name);
+            OrderViewModel order = _orderService.GetCurrentOrder(user.Id);
             return View(order);
         }
 
@@ -77,12 +78,19 @@ namespace SEDC.Lamazon.Web.Controllers
             return RedirectToAction("listallorders");
         }
 
+        public IActionResult ChangeStatus(int orderId, int statusId)
+        {
+            UserViewModel user = _userService.GetCurrentUser(User.Identity.Name);
+            _orderService.ChangeStatus(orderId, user.Id, (StatusTypeViewModel)statusId);
+            return RedirectToAction("ListOrders");
+        }
+
         public int AddProduct(int productId)
         {
-            string userId = "3";
-            OrderViewModel order = _orderService.GetCurrentOrder(userId);
+            UserViewModel user = _userService.GetCurrentUser(User.Identity.Name);
+            OrderViewModel order = _orderService.GetCurrentOrder(user.Id);
 
-            int result = _orderService.AddProduct(order.Id, productId, userId);
+            int result = _orderService.AddProduct(order.Id, productId, user.Id);
 
             if(result >= 0)
             {

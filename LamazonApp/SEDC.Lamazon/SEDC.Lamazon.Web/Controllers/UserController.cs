@@ -29,8 +29,9 @@ namespace SEDC.Lamazon.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _userService.Login(model);
-                    if (User.IsInRole("Admin"))
+                    bool isAdmin;
+                    _userService.Login(model, out isAdmin);
+                    if (isAdmin)
                     {
                         return RedirectToAction("listallorders", "order");
                     }
