@@ -49,13 +49,19 @@ namespace SEDC.Lamazon.Services.Services
             if (result.Succeeded)
             {
                 var currentUser = _userManager.FindByNameAsync(user.UserName).Result;
-                _userManager.AddToRoleAsync(user, "user");
-
-                Login(new LoginViewModel
+                var roleResult = _userManager.AddToRoleAsync(currentUser, "user").Result;
+                if (roleResult.Succeeded)
                 {
-                    Username = registerModel.Username,
-                    Password = registerModel.Password
-                }, out isAdmin);
+                    Login(new LoginViewModel
+                    {
+                        Username = registerModel.Username,
+                        Password = registerModel.Password
+                    }, out isAdmin);
+                }
+                else
+                {
+                    throw new Exception("Adding user to a role failed!");
+                }
             }
         }
 

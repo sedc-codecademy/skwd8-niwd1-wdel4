@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NToastNotify;
 using SEDC.Lamazon.DataAccess;
 using SEDC.Lamazon.DataAccess.Interfaces;
 using SEDC.Lamazon.DataAccess.Repositories;
@@ -59,6 +60,15 @@ namespace SEDC.Lamazon.Web
 
             services.AddAutoMapper();
 
+            services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
+            {
+                ProgressBar = true,
+                PositionClass = ToastPositions.TopCenter,
+                CloseButton = true
+            });
+
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -81,7 +91,7 @@ namespace SEDC.Lamazon.Web
 
             //Don't avoid the following line if you want your app to use authentication
             app.UseAuthentication();
-
+            app.UseNToastNotify();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SEDC.Lamazon.Services.Interfaces;
 using SEDC.Lamazon.Web.Models;
@@ -10,7 +11,7 @@ using SEDC.Lamazon.WebModels.ViewModels;
 
 namespace SEDC.Lamazon.Web.Controllers
 {
-    //TODO: Change all hardcoded userId in the controller
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
@@ -26,6 +27,7 @@ namespace SEDC.Lamazon.Web.Controllers
             _productService = productService;
         }
 
+        [Authorize(Roles = "user")]
         public IActionResult ListOrders()
         {
             //string userId = "3";
@@ -36,12 +38,14 @@ namespace SEDC.Lamazon.Web.Controllers
             return View(userOrders);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult ListAllOrders()
         {
             List<OrderViewModel> orders = _orderService.GetAllOrders().ToList();
             return View(orders);
         }
 
+        [Authorize(Roles = "user")]
         public IActionResult OrderDetails(int orderId)
         {
             UserViewModel user = _userService.GetCurrentUser(User.Identity.Name);
@@ -57,6 +61,7 @@ namespace SEDC.Lamazon.Web.Controllers
             }
         }
 
+        [Authorize(Roles =  "user")]
         public IActionResult Order()
         {
             UserViewModel user = _userService.GetCurrentUser(User.Identity.Name);
@@ -64,6 +69,7 @@ namespace SEDC.Lamazon.Web.Controllers
             return View(order);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult ApproveOrder(int orderId)
         {
             OrderViewModel order = _orderService.GetOrderById(orderId);
@@ -71,6 +77,7 @@ namespace SEDC.Lamazon.Web.Controllers
             return RedirectToAction("listallorders");
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult DeclineOrder(int orderId)
         {
             OrderViewModel order = _orderService.GetOrderById(orderId);
@@ -78,6 +85,7 @@ namespace SEDC.Lamazon.Web.Controllers
             return RedirectToAction("listallorders");
         }
 
+        [Authorize(Roles = "user")]
         public IActionResult ChangeStatus(int orderId, int statusId)
         {
             UserViewModel user = _userService.GetCurrentUser(User.Identity.Name);
@@ -85,6 +93,7 @@ namespace SEDC.Lamazon.Web.Controllers
             return RedirectToAction("ListOrders");
         }
 
+        [Authorize(Roles = "user")]
         public int AddProduct(int productId)
         {
             UserViewModel user = _userService.GetCurrentUser(User.Identity.Name);

@@ -17,6 +17,7 @@
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
                             <input class="form-control" type="text" asp-for="Firstname" placeholder="Firstname" />
                         </div>
+                        <span asp-validation-for="Firstname" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -27,6 +28,7 @@
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
                             <input class="form-control" type="text" asp-for="Lastname" placeholder="Lastname" />
                         </div>
+                        <span asp-validation-for="Lastname" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -37,6 +39,7 @@
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
                             <input class="form-control" type="email" asp-for="Email" placeholder="Email" />
                         </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -47,6 +50,7 @@
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-home"></span></span>
                             <input class="form-control" type="text" asp-for="Address" placeholder="Address" />
                         </div>
+                        <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -57,6 +61,7 @@
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
                             <input class="form-control" type="text" asp-for="Username" placeholder="Username" />
                         </div>
+                        <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -67,6 +72,7 @@
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
                             <input class="form-control" type="password" asp-for="Password" placeholder="Password" />
                         </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -75,8 +81,9 @@
                         <label asp-for="ConfirmPassword"></label>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input class="form-control" type="text" asp-for="ConfirmPassword" placeholder="Confirm password" />
+                            <input class="form-control" type="password" asp-for="ConfirmPassword" placeholder="Confirm password" />
                         </div>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
                 <br />
