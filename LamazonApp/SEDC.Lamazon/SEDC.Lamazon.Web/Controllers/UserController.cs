@@ -15,7 +15,6 @@ namespace SEDC.Lamazon.Web.Controllers
         private readonly IUserService _userService;
         private readonly IToastNotification _toastNotification;
 
-
         public UserController(IUserService userService, 
                               IToastNotification toastNotification)
         {
@@ -81,9 +80,8 @@ namespace SEDC.Lamazon.Web.Controllers
             }
             catch (Exception ex)
             {
-                string message = ex.Message;
+                Log.Error($"Message: {ex.Message} | Exception: {ex.InnerException}");
             }
-            
             return View(model);
         }
 

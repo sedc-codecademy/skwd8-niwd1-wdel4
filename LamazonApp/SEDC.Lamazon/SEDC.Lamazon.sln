@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.Lamazon.Domain", "SEDC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.Lamazon.Services", "SEDC.Lamazon.Services\SEDC.Lamazon.Services.csproj", "{BA8341B1-CC8A-4AAC-813B-028D050DC0B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Lamazon.WebModels", "SEDC.Lamazon.WebModels\SEDC.Lamazon.WebModels.csproj", "{B0A04B4B-2D24-45ED-BF30-04160BA55C4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEDC.Lamazon.WebModels", "SEDC.Lamazon.WebModels\SEDC.Lamazon.WebModels.csproj", "{B0A04B4B-2D24-45ED-BF30-04160BA55C4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Lamazon.Tests", "SEDC.Lamazon.Tests\SEDC.Lamazon.Tests.csproj", "{4331D9B6-389F-4E94-BDDA-69BDC4B604EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Lamazon.PerformanceCheckAPI", "SEDC.Lamazon.PerformanceCheckAPI\SEDC.Lamazon.PerformanceCheckAPI.csproj", "{506CC9E1-1686-4BC4-AC4C-39AFA1EC7A14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEDC.Lamazon.ConsoleApplication", "SEDC.Lamazon.ConsoleApplication\SEDC.Lamazon.ConsoleApplication.csproj", "{C6E5B51D-71DF-4A2F-BC76-E672CD39AEEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{B0A04B4B-2D24-45ED-BF30-04160BA55C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0A04B4B-2D24-45ED-BF30-04160BA55C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0A04B4B-2D24-45ED-BF30-04160BA55C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4331D9B6-389F-4E94-BDDA-69BDC4B604EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4331D9B6-389F-4E94-BDDA-69BDC4B604EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4331D9B6-389F-4E94-BDDA-69BDC4B604EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4331D9B6-389F-4E94-BDDA-69BDC4B604EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{506CC9E1-1686-4BC4-AC4C-39AFA1EC7A14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{506CC9E1-1686-4BC4-AC4C-39AFA1EC7A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{506CC9E1-1686-4BC4-AC4C-39AFA1EC7A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{506CC9E1-1686-4BC4-AC4C-39AFA1EC7A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6E5B51D-71DF-4A2F-BC76-E672CD39AEEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6E5B51D-71DF-4A2F-BC76-E672CD39AEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6E5B51D-71DF-4A2F-BC76-E672CD39AEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6E5B51D-71DF-4A2F-BC76-E672CD39AEEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
