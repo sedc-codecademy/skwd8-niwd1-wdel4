@@ -21,6 +21,7 @@ namespace SEDC.Lamazon.ConsoleApplication
             int limit = 1000;
 
             HttpResponseMessage response =  client.GetAsync(apiUrl).Result;
+
             string responseBody = response.Content.ReadAsStringAsync().Result;
 
             if(int.Parse(responseBody) > limit)
