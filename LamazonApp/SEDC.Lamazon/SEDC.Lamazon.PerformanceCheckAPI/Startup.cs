@@ -30,6 +30,16 @@ namespace SEDC.Lamazon.PerformanceCheckAPI
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
+
             string connectionString = Configuration.GetValue<string>("LamazonConnectionString");
 
             DIModule.RegisterModule(services, connectionString);
@@ -54,6 +64,7 @@ namespace SEDC.Lamazon.PerformanceCheckAPI
                 app.UseHsts();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();
         }
